@@ -17,7 +17,7 @@ if(is_post_request()) {
   $args['condition_id'] = $_POST['condition_id'] ?? NULL;
   $args['description'] = $_POST['description'] ?? NULL;
 
-  $bicycle = [];
+  $bicycle = new Bicycle($args);
   
   $result = false;
   if($result === true) {
