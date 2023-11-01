@@ -5,6 +5,7 @@ class Bicycle {
   // ----- START OF ACTIVE RECORD CODE ------
   static protected $database;
   static protected $db_columns = ['id', 'brand', 'model', 'year', 'category', 'color', 'gender', 'price', 'weight_kg', 'condition_id', 'description'];
+  public $errors = [];
 
   static public function set_database($database) {
     self::$database = $database;
@@ -55,7 +56,22 @@ class Bicycle {
     return $object;
   }
 
+  protected function validate() {
+    $this->errors = [];
+
+    if(is_blank($this->brand)) {
+      $this->errors[] = "Brand cannot be blank.";
+    }
+    if(is_blank($this->model)) {
+      $this->errors[] = "Model cannot be blank.";
+    }
+    return $this->errors;
+  }
+
   protected function create() {
+    $this->validate();
+    if(!empty($this->errors)) { return false; }
+
     $attributes = $this->sanitized_attributes();
     $sql = "INSERT INTO bicycles (";
     $sql .= join(', ', array_keys($attributes));
@@ -70,6 +86,9 @@ class Bicycle {
   }
 
   protected function update() {
+    $this->validate();
+    if(!empty($this->errors)) { return false; }
+
     $attributes = $this->sanitized_attributes();
     $attribute_pairs = [];
     foreach($attributes as $key => $value) {
@@ -85,6 +104,7 @@ class Bicycle {
   }
 
   public function save() {
+    // A new record will not have an ID yet
     if(isset($this->id)) {
       return $this->update();
     } else {
@@ -100,6 +120,7 @@ class Bicycle {
     }
   }
 
+  // Properties which have database columns, excluding ID
   public function attributes() {
     $attributes = [];
     foreach(self::$db_columns as $column) {
