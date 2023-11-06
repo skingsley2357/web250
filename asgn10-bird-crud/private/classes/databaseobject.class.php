@@ -140,13 +140,6 @@ class DatabaseObject {
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
-
-    // After deleting, the instance of the object will still
-    // exist, even though the database record does not.
-    // This can be useful, as in:
-    //   echo $user->first_name . " was deleted.";
-    // but, for example, we can't call $user->update() after
-    // calling $user->delete().
   }
 
 }
