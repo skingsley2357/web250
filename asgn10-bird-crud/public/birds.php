@@ -10,7 +10,7 @@
     <div class="actions">
       <a class="action" href="<?php echo url_for('new.php'); ?>">Add Bird</a>
     </div>
-
+    <br>
     <table border="1">
       <tr>
         <th>Name</th>

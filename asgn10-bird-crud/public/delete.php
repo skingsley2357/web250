@@ -6,15 +6,15 @@ if(!isset($_GET['id'])) {
   redirect_to(url_for('index.php'));
 }
 $id = $_GET['id'];
-$bicycle = Bicycle::find_by_id($id);
-if($bicycle == false) {
+$bird = Bird::find_by_id($id);
+if($bird == false) {
   redirect_to(url_for('index.php'));
 }
 
 if(is_post_request()) {
 
-  // Delete bicycle
-  $result = $bicycle->delete();
+  // Delete bird
+  $result = $bird->delete();
   $_SESSION['message'] = 'The bird was deleted successfully.';
   redirect_to(url_for('index.php'));
 
@@ -25,16 +25,16 @@ if(is_post_request()) {
 ?>
 
 <?php $page_title = 'Delete Bird'; ?>
-<?php include(SHARED_PATH . '/staff_header.php'); ?>
+<?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
 
   <a class="back-link" href="<?php echo url_for('index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="bicycle delete">
-    <h1>Delete Bicycle</h1>
-    <p>Are you sure you want to delete this bicycle?</p>
-    <p class="item"><?php echo h($bicycle->name()); ?></p>
+  <div class="bird delete">
+    <h1>Delete Bird</h1>
+    <p>Are you sure you want to delete this bird?</p>
+    <p class="item"><?php echo h($bird->common_name); ?></p>
 
     <form action="<?php echo url_for('delete.php?id=' . h(u($id))); ?>" method="post">
       <div id="operations">

@@ -12,7 +12,7 @@ class Bird extends DatabaseObject {
   public $conservation_id;
   public $backyard_tips;
 
-  protected const CONSERVATION_OPTIONS = [
+  public const CONSERVATION_OPTIONS = [
     1 => 'Low concern',
     2 => 'Moderate concern',
     3 => 'Extreme concern',
