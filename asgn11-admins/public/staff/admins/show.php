@@ -2,6 +2,8 @@
 
 <?php
 
+require_login();
+
 $id = $_GET['id'] ?? '1'; // PHP > 7.0
 
 $admin = Admin::find_by_id($id);

@@ -1,5 +1,7 @@
 <?php
 
+require_login();
+
 require_once('../../../private/initialize.php');
 
 if(!isset($_GET['id'])) {
