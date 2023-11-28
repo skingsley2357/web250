@@ -3,24 +3,24 @@
 require_once('../private/initialize.php');
 
 if(!isset($_GET['id'])) {
-  redirect_to(url_for('index.php'));
+  redirect_to(url_for('/members/index.php'));
 }
 $id = $_GET['id'];
-$bird = Bird::find_by_id($id);
-if($bird == false) {
-  redirect_to(url_for('index.php'));
+$member = Member::find_by_id($id);
+if($member == false) {
+  redirect_to(url_for('/members/index.php'));
 }
 
 if(is_post_request()) {
 
   // Save record using post parameters
-  $args = $_POST['bird'];
-  $bird->merge_attributes($args);
-  $result = $bird->save();
+  $args = $_POST['member'];
+  $member->merge_attributes($args);
+  $result = $member->save();
 
   if($result === true) {
-    $_SESSION['message'] = 'The bird was updated successfully.';
-    redirect_to(url_for('show.php?id=' . $id));
+    $session->message('The member was updated successfully.');
+    redirect_to(url_for('/members/show.php?id=' . $id));
   } else {
     // show errors
   }
@@ -33,24 +33,24 @@ if(is_post_request()) {
 
 ?>
 
-<?php $page_title = 'Edit Bird'; ?>
+<?php $page_title = 'Edit member'; ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('index.php'); ?>">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('/members/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="bird edit">
-    <h1>Edit Bird</h1>
+  <div class="member edit">
+    <h1>Edit member</h1>
 
-    <?php echo display_errors($bird->errors); ?>
+    <?php echo display_errors($member->errors); ?>
 
-    <form action="<?php echo url_for('edit.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/members/edit.php?id=' . h(u($id))); ?>" method="post">
 
       <?php include('form_fields.php'); ?>
 
       <div id="operations">
-        <input type="submit" value="Edit Bird" />
+        <input type="submit" value="Edit member" />
       </div>
     </form>
 
@@ -59,3 +59,4 @@ if(is_post_request()) {
 </div>
 
 <?php include(SHARED_PATH . '/public_footer.php'); ?>
+

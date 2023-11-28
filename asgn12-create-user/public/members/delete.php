@@ -6,16 +6,16 @@ if(!isset($_GET['id'])) {
   redirect_to(url_for('index.php'));
 }
 $id = $_GET['id'];
-$bird = Bird::find_by_id($id);
-if($bird == false) {
+$member = Member::find_by_id($id);
+if($member == false) {
   redirect_to(url_for('index.php'));
 }
 
 if(is_post_request()) {
 
-  // Delete bird
-  $result = $bird->delete();
-  $_SESSION['message'] = 'The bird was deleted successfully.';
+  // Delete member
+  $result = $member->delete();
+  $_SESSION['message'] = 'The member was deleted successfully.';
   redirect_to(url_for('index.php'));
 
 } else {
@@ -24,21 +24,21 @@ if(is_post_request()) {
 
 ?>
 
-<?php $page_title = 'Delete Bird'; ?>
+<?php $page_title = 'Delete Member'; ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('index.php'); ?>">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('/member/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="bird delete">
-    <h1>Delete Bird</h1>
-    <p>Are you sure you want to delete this bird?</p>
-    <p class="item"><?php echo h($bird->common_name); ?></p>
+  <div class="member delete">
+    <h1>Delete Member</h1>
+    <p>Are you sure you want to delete this member?</p>
+    <p class="item"><?php echo h($member->common_name); ?></p>
 
-    <form action="<?php echo url_for('delete.php?id=' . h(u($id))); ?>" method="post">
+    <form action="<?php echo url_for('/member/delete.php?id=' . h(u($id))); ?>" method="post">
       <div id="operations">
-        <input type="submit" name="commit" value="Delete Bird" />
+        <input type="submit" name="commit" value="Delete member" />
       </div>
     </form>
   </div>

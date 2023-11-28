@@ -1,42 +1,37 @@
 <?php
-
 // prevents this code from being loaded directly in the browser
 // or without first setting the necessary object
-if(!isset($bird)) {
-  redirect_to(url_for('index.php'));
+if(!isset($member)) {
+  redirect_to(url_for('/members/index.php'));
 }
 ?>
 
 <dl>
-  <dt>Name</dt>
-  <dd><input type="text" name="bird[common_name]" value="<?php echo h($bird->common_name); ?>" /></dd>
+  <dt>First name</dt>
+  <dd><input type="text" name="member[first_name]" value="<?php echo h($member->first_name); ?>" /></dd>
 </dl>
 
 <dl>
-  <dt>Habitat</dt>
-  <dd><input type="text" name="bird[habitat]" value="<?php echo h($bird->habitat); ?>" /></dd>
-</dl>
-
-
-<dl>
-  <dt>Food</dt>
-  <dd><input type="text" name="bird[food]" value="<?php echo h($bird->food); ?>" /></dd>
+  <dt>Last name</dt>
+  <dd><input type="text" name="member[last_name]" value="<?php echo h($member->last_name); ?>" /></dd>
 </dl>
 
 <dl>
-  <dt>Conservation</dt>
-  <dd>
-    <select name="bird[conservation_id]">
-      <option value=""></option>
-    <?php foreach(Bird::CONSERVATION_OPTIONS as $cons_id => $cons_name) { ?>
-      <option value="<?php echo $cons_id; ?>" <?php if($bird->conservation_id == $cons_id) { echo 'selected'; } ?>><?php echo $cons_name; ?></option>
-    <?php } ?>
-    </select>
-  </dd>
+  <dt>Email</dt>
+  <dd><input type="text" name="member[email]" value="<?php echo h($member->email); ?>" /></dd>
 </dl>
-  
-  <dl>
-    <dt>Backyard Tips</dt>
-    <dd><textarea name="bird[backyard_tips]" rows="5" cols="50"><?php echo h($bird->backyard_tips); ?></textarea></dd>
-  </dl>
 
+<dl>
+  <dt>Username</dt>
+  <dd><input type="text" name="member[username]" value="<?php echo h($member->username); ?>" /></dd>
+</dl>
+
+<dl>
+  <dt>Password</dt>
+  <dd><input type="password" name="member[password]" value="" /></dd>
+</dl>
+
+<dl>
+  <dt>Confirm Password</dt>
+  <dd><input type="password" name="member[confirm_password]" value="" /></dd>
+</dl>
