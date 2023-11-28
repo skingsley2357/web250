@@ -2,22 +2,24 @@
 
 <?php
 
+require_login();
+
 $id = $_GET['id'] ?? '1'; // PHP > 7.0
 
 $member = Member::find_by_id($id);
 
 ?>
 
-<?php $page_title = 'Show member: ' . h($member->full_name()); ?>
+<?php $page_title = 'Show Member: ' . h($member->full_name()); ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
 
   <a class="back-link" href="<?php echo url_for('/members/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="member show">
+  <div class="admin show">
 
-    <h1>member: <?php echo h($member->full_name()); ?></h1>
+    <h1>Member: <?php echo h($member->full_name()); ?></h1>
 
     <div class="attributes">
       <dl>

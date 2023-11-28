@@ -2,6 +2,8 @@
 
 require_once('../../private/initialize.php');
 
+// require_login();
+
 if(is_post_request()) {
 
   // Create record using post parameters
@@ -31,7 +33,7 @@ if(is_post_request()) {
 
   <a class="back-link" href="<?php echo url_for('/members/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="member new">
+  <div class="admin new">
     <h1>Create member</h1>
 
     <?php echo display_errors($member->errors); ?>
@@ -41,7 +43,7 @@ if(is_post_request()) {
       <?php include('form_fields.php'); ?>
 
       <div id="operations">
-        <input type="submit" value="Create member" />
+        <input type="submit" value="Create Member" />
       </div>
     </form>
 

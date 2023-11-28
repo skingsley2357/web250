@@ -1,6 +1,8 @@
 <?php
 
-require_once('../private/initialize.php');
+require_once('../../private/initialize.php');
+
+require_login();
 
 if(!isset($_GET['id'])) {
   redirect_to(url_for('/members/index.php'));
@@ -40,8 +42,8 @@ if(is_post_request()) {
 
   <a class="back-link" href="<?php echo url_for('/members/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="member edit">
-    <h1>Edit member</h1>
+  <div class="admin edit">
+    <h1>Edit Member</h1>
 
     <?php echo display_errors($member->errors); ?>
 

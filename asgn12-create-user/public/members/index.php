@@ -1,20 +1,20 @@
 <?php require_once('../../private/initialize.php'); ?>
-<?php //require_login(); ?>
+<?php require_login(); ?>
 <?php
   
 // Find all members
 $members = Member::find_all();
   
 ?>
-<?php $page_title = 'members'; ?>
+<?php $page_title = 'Members'; ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
-  <div class="members listing">
-    <h1>members</h1>
+  <div class="admins listing">
+    <h1>Members</h1>
 
     <div class="actions">
-      <a class="action" href="<?php echo url_for('/members/new.php'); ?>">Add member</a>
+      <a class="action" href="<?php echo url_for('/members/new.php'); ?>">Add Member</a>
     </div>
 
   	<table class="list">

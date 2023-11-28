@@ -1,5 +1,5 @@
 <?php
-require_once('../../private/initialize.php');
+require_once('../private/initialize.php');
 
 $errors = [];
 $username = '';
@@ -20,11 +20,11 @@ if(is_post_request()) {
 
   // if there were no errors, try to login
   if(empty($errors)) {
-    $admin = Admin::find_by_username($username);
-    // test if admin found and password is correct
-    if($admin != false && $admin->verify_password($password)) {
-      // Mark admin as logged in
-      $session->login($admin);
+    $member = Member::find_by_username($username);
+    // test if member found and password is correct
+    if($member != false && $member->verify_password($password)) {
+      // Mark member as logged in
+      $session->login($member);
       redirect_to(url_for('/staff/index.php'));
     } else {
       // username not found or password does not match
@@ -38,7 +38,7 @@ if(is_post_request()) {
 ?>
 
 <?php $page_title = 'Log in'; ?>
-<?php include(SHARED_PATH . '/staff_header.php'); ?>
+<?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
   <h1>Log in</h1>
@@ -55,4 +55,4 @@ if(is_post_request()) {
 
 </div>
 
-<?php include(SHARED_PATH . '/staff_footer.php'); ?>
+<?php include(SHARED_PATH . '/public_footer.php'); ?>
