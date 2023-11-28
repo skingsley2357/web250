@@ -1,48 +1,43 @@
-<?php require_once('../private/initialize.php'); ?>
+<?php require_once('../../private/initialize.php'); ?>
 
 <?php
 
 $id = $_GET['id'] ?? '1'; // PHP > 7.0
 
-$bird = Bird::find_by_id($id);
+$member = Member::find_by_id($id);
 
 ?>
 
-<?php $page_title = 'Show Bird: ' . h($bird->common_name); ?>
+<?php $page_title = 'Show member: ' . h($member->full_name()); ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
 <div id="content">
 
-  <a class="back-link" href="<?php echo url_for('index.php'); ?>">&laquo; Back to List</a>
+  <a class="back-link" href="<?php echo url_for('/members/index.php'); ?>">&laquo; Back to List</a>
 
-  <div class="bird show">
+  <div class="member show">
 
-    <h1>Bird: <?php echo h($bird->common_name); ?></h1>
+    <h1>member: <?php echo h($member->full_name()); ?></h1>
 
     <div class="attributes">
       <dl>
-        <dt>Brand</dt>
-        <dd><?php echo h($bird->common_name); ?></dd>
+        <dt>First name</dt>
+        <dd><?php echo h($member->first_name); ?></dd>
       </dl>
       <dl>
-        <dt>Model</dt>
-        <dd><?php echo h($bird->habitat); ?></dd>
+        <dt>Last name</dt>
+        <dd><?php echo h($member->last_name); ?></dd>
       </dl>
       <dl>
-        <dt>Year</dt>
-        <dd><?php echo h($bird->food); ?></dd>
+        <dt>Email</dt>
+        <dd><?php echo h($member->email); ?></dd>
       </dl>
       <dl>
-        <dt>Condition</dt>
-        <dd><?php echo h($bird->conservation()); ?></dd>
-      </dl>
-      <dl>  
-        <dt>Description</dt>
-        <dd><?php echo h($bird->backyard_tips); ?></dd>
+        <dt>Username</dt>
+        <dd><?php echo h($member->username); ?></dd>
       </dl>
     </div>
 
   </div>
 
 </div>
-

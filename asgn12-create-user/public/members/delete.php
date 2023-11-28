@@ -1,6 +1,6 @@
 <?php
 
-require_once('../private/initialize.php');
+require_once('../../private/initialize.php');
 
 if(!isset($_GET['id'])) {
   redirect_to(url_for('index.php'));
@@ -16,7 +16,7 @@ if(is_post_request()) {
   // Delete member
   $result = $member->delete();
   $_SESSION['message'] = 'The member was deleted successfully.';
-  redirect_to(url_for('index.php'));
+  redirect_to(url_for('/members/index.php'));
 
 } else {
   // Display form
@@ -34,7 +34,7 @@ if(is_post_request()) {
   <div class="member delete">
     <h1>Delete Member</h1>
     <p>Are you sure you want to delete this member?</p>
-    <p class="item"><?php echo h($member->common_name); ?></p>
+    <p class="item"><?php echo h($member->full_name()); ?></p>
 
     <form action="<?php echo url_for('/member/delete.php?id=' . h(u($id))); ?>" method="post">
       <div id="operations">
