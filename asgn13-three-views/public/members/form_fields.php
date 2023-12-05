@@ -27,6 +27,18 @@ if(!isset($member)) {
 </dl>
 
 <dl>
+  <dt>User Level</dt>
+  <dd>
+    <select name="member[user_level]">
+      <option value=""></option>
+    <?php foreach(Member::USER_LEVEL_OPTIONS as $level_id => $level_name) { ?>
+      <option value="<?php echo $level_id; ?>" <?php if($member->user_level == $level_id) { echo 'selected'; } ?>><?php echo $level_name; ?></option>
+    <?php } ?>
+    </select>
+  </dd>
+</dl>
+
+<dl>
   <dt>Password</dt>
   <dd><input type="password" name="member[password]" value="" /></dd>
 </dl>

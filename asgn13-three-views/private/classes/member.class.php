@@ -3,13 +3,14 @@
 class Member extends DatabaseObject {
 
   static protected $table_name = "users";
-  static protected $db_columns = ['id', 'first_name', 'last_name', 'email', 'username', 'hashed_password'];
+  static protected $db_columns = ['id', 'first_name', 'last_name', 'email', 'username', 'user_level', 'hashed_password'];
 
   public $id;
   public $first_name;
   public $last_name;
   public $email;
   public $username;
+  public $user_level;
   protected $hashed_password;
   public $password;
   public $confirm_password;
@@ -22,6 +23,7 @@ class Member extends DatabaseObject {
     $this->username = $args['username'] ?? '';
     $this->password = $args['password'] ?? '';
     $this->confirm_password = $args['confirm_password'] ?? '';
+    $this->user_level = $args['user_level'] ?? 1; // Default to Generic User
   }
 
   public function full_name() {
@@ -77,8 +79,8 @@ class Member extends DatabaseObject {
       $this->errors[] = "Username cannot be blank.";
     } elseif (!has_length($this->username, array('min' => 8, 'max' => 255))) {
       $this->errors[] = "Username must be between 8 and 255 characters.";
-    } elseif (!has_unique_username($this->username, $this->id ?? 0)) {
-      $this->errors[] = "Username not allowed. Try another.";
+    // } elseif (!has_unique_username($this->username, $this->id ?? 0)) {
+    //   $this->errors[] = "Username not allowed. Try another.";
     }
 
     if($this->password_required) {
@@ -116,6 +118,12 @@ class Member extends DatabaseObject {
       return false;
     }
   }
+
+  public const USER_LEVEL_OPTIONS = [
+    1 => 'Generic User',
+    2 => 'Member',
+    3 => 'Admin'
+  ];
 
 }
 
