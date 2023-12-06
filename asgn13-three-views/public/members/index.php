@@ -42,7 +42,7 @@ $members = Member::find_all();
           <td><?php echo h($member->last_name); ?></td>
           <td><?php echo h($member->email); ?></td>
           <td><?php echo h($member->username); ?></td>
-          <?php if ($session->user_level == 1) : ?>
+          <?php if ($session->user_level == 3) : ?>
           <td><a class="action" href="<?php echo url_for('/members/show.php?id=' . h(u($member->id))); ?>">View</a></td>
           <td><a class="action" href="<?php echo url_for('/members/edit.php?id=' . h(u($member->id))); ?>">Edit</a></td>
           <td><a class="action" href="<?php echo url_for('/members/delete.php?id=' . h(u($member->id))); ?>">Delete</a></td>

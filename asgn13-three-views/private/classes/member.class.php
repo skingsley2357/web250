@@ -120,9 +120,8 @@ class Member extends DatabaseObject {
   }
 
   public const USER_LEVEL_OPTIONS = [
-    1 => 'Generic User',
-    2 => 'Member',
-    3 => 'Admin'
+    1 => 'Member',
+    2 => 'Admin'
   ];
 
 }

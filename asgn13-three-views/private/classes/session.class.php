@@ -30,6 +30,11 @@ class Session {
     // return isset($this->member_id);
     return isset($this->member_id) && $this->last_login_is_recent();
   }
+  
+  public function is_admin_logged_in() {
+    // return isset($this->member_id);
+    return isset($this->member_id) && $this->is_logged_in();
+  }
 
   public function logout() {
     unset($_SESSION['member_id']);
@@ -47,6 +52,7 @@ class Session {
     if(isset($_SESSION['member_id'])) {
       $this->member_id = $_SESSION['member_id'];
       $this->username = $_SESSION['username'];
+      $this->user_level = $_SESSION['user_level'];
       $this->last_login = $_SESSION['last_login'];
     }
   }

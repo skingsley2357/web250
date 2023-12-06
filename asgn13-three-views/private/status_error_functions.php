@@ -9,6 +9,15 @@ function require_login() {
   }
 }
 
+function require_admin_login() {
+  global $session;
+  if(!$session->is_admin_logged_in()) {
+    redirect_to(url_for('login.php'));
+  } else {
+    // Do nothing, let the rest of the page proceed
+  }
+}
+
 function display_errors($errors=array()) {
   $output = '';
   if(!empty($errors)) {
