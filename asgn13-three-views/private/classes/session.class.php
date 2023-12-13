@@ -16,12 +16,13 @@ class Session {
 
   public function login($member) {
     if($member) {
-      var_dump($member->user_level);
       session_regenerate_id();
-      $this->member_id = $_SESSION['member_id'] = $member->id;
+      $_SESSION['member_id'] = $member->id;
+      $this->member_id = $member->id;
+
       $this->username = $_SESSION['username'] = $member->username;
-      $this->user_level = $_SESSION['user_level'] = $member->user_level;
       $this->last_login = $_SESSION['last_login'] = time();
+      $this->user_level = $_SESSION['user_level'] = $member->user_level;
     }
     return true;
   }
@@ -32,8 +33,7 @@ class Session {
   }
   
   public function is_admin_logged_in() {
-    // return isset($this->member_id);
-    return isset($this->member_id) && $this->is_logged_in();
+   return $this->is_logged_in() && $this->user_level == 2;
   }
 
   public function logout() {
